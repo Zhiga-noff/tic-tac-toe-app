@@ -1,17 +1,19 @@
 import { CellField } from './Stateless/CellField';
+import {ClickInField} from "./Stateful/ClickInField";
 
-export const StructuralComponent = () => {
+export const StructuralComponent = ({typeField, setTypeField}) => {
   return (
     <>
-      <CellField />
-      <CellField />
-      <CellField />
-      <CellField />
-      <CellField />
-      <CellField />
-      <CellField />
-      <CellField />
-      <CellField />
+      <ClickInField typeField={typeField} setTypeField={setTypeField}/>
+      <ClickInField typeField={typeField} setTypeField={setTypeField}/>
+      <ClickInField typeField={typeField} setTypeField={setTypeField}/>
+      <ClickInField typeField={typeField} setTypeField={setTypeField}/>
+      <ClickInField typeField={typeField} setTypeField={setTypeField}/>
+      <ClickInField typeField={typeField} setTypeField={setTypeField}/>
+      <ClickInField typeField={typeField} setTypeField={setTypeField}/>
+      <ClickInField typeField={typeField} setTypeField={setTypeField}/>
+      <ClickInField typeField={typeField} setTypeField={setTypeField}/>
+
     </>
   );
 };
