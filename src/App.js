@@ -20,7 +20,7 @@ export const App = () => {
             {getTypeField()}
         </div>
       <div className={style.app}>
-        <StructuralComponent />
+        <StructuralComponent  typeField={typeField} setTypeField={setTypeField}/>
       </div>
     </>
   );
