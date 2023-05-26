@@ -1,19 +1,71 @@
-import { CellField } from './Stateless/CellField';
-import {ClickInField} from "./Stateful/ClickInField";
+import { ClickInField } from './Stateful/ClickInField';
 
-export const StructuralComponent = ({typeField, setTypeField}) => {
+export const StructuralComponent = ({ typeField, setTypeField, arr, setArr }) => {
   return (
     <>
-      <ClickInField typeField={typeField} setTypeField={setTypeField}/>
-      <ClickInField typeField={typeField} setTypeField={setTypeField}/>
-      <ClickInField typeField={typeField} setTypeField={setTypeField}/>
-      <ClickInField typeField={typeField} setTypeField={setTypeField}/>
-      <ClickInField typeField={typeField} setTypeField={setTypeField}/>
-      <ClickInField typeField={typeField} setTypeField={setTypeField}/>
-      <ClickInField typeField={typeField} setTypeField={setTypeField}/>
-      <ClickInField typeField={typeField} setTypeField={setTypeField}/>
-      <ClickInField typeField={typeField} setTypeField={setTypeField}/>
-
+      <ClickInField
+        typeField={typeField}
+        setTypeField={setTypeField}
+        arr={arr}
+        setArr={setArr}
+        dataIndex={1}
+      />
+      <ClickInField
+        typeField={typeField}
+        setTypeField={setTypeField}
+        arr={arr}
+        setArr={setArr}
+        dataIndex={2}
+      />
+      <ClickInField
+        typeField={typeField}
+        setTypeField={setTypeField}
+        arr={arr}
+        setArr={setArr}
+        dataIndex={3}
+      />
+      <ClickInField
+        typeField={typeField}
+        setTypeField={setTypeField}
+        arr={arr}
+        setArr={setArr}
+        dataIndex={4}
+      />
+      <ClickInField
+        typeField={typeField}
+        setTypeField={setTypeField}
+        arr={arr}
+        setArr={setArr}
+        dataIndex={5}
+      />
+      <ClickInField
+        typeField={typeField}
+        setTypeField={setTypeField}
+        arr={arr}
+        setArr={setArr}
+        dataIndex={6}
+      />
+      <ClickInField
+        typeField={typeField}
+        setTypeField={setTypeField}
+        arr={arr}
+        setArr={setArr}
+        dataIndex={7}
+      />
+      <ClickInField
+        typeField={typeField}
+        setTypeField={setTypeField}
+        arr={arr}
+        setArr={setArr}
+        dataIndex={8}
+      />
+      <ClickInField
+        typeField={typeField}
+        setTypeField={setTypeField}
+        arr={arr}
+        setArr={setArr}
+        dataIndex={9}
+      />
     </>
   );
 };
