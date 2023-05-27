@@ -1,13 +1,11 @@
 import { useState } from 'react';
 import style from './App.module.css';
-import { StructuralComponent } from './components/StructuralComponent';
-import { func } from 'prop-types';
+import { AppLayout } from './App';
 
-const nodeCollectionField = document.getElementsByClassName('field');
-console.log(nodeCollectionField);
-
-export const App = () => {
+const App = () => {
+  // Установка типов круг или крест
   const [typeField, setTypeField] = useState('circle');
+  // Пустой массив для внесения типов элементов на поле
   const [arrClickResult, setArrClickResult] = useState([
     '',
     '',
@@ -21,6 +19,7 @@ export const App = () => {
     '',
   ]);
 
+  // Вывод очередности ввода в зависимости от типа
   function getTypeField() {
     if (typeField === 'circle') {
       return <p className={style.circle}>O</p>;
@@ -28,8 +27,7 @@ export const App = () => {
     return <p className={style.chest}>X</p>;
   }
 
-  console.log(arrClickResult);
-
+  // Массив из побеждающих результатов
   const resultForWin = [
     [1, 2, 3],
     [4, 5, 6],
@@ -41,22 +39,25 @@ export const App = () => {
     [3, 5, 7],
   ];
 
+  // Отдельная функция для проверки на ряд одинаковых элементов
   function checkingForResults(type) {
-     return resultForWin.some((item) => {
-          let current = 0;
-          return type.some((itemType) => {
-              for (let i = 0; i < item.length; i++) {
-                  if (itemType === item[i]) {
-                      current += 1;
-                      console.log(current);
-                  }
-                  if (current === 3) {
-                      return true;
-                  }
-              }
-          });
+    return resultForWin.some((item) => {
+      let current = 0;
+      return type.some((itemType) => {
+        for (let i = 0; i < item.length; i++) {
+          if (itemType === item[i]) {
+            current += 1;
+            console.log(current);
+          }
+          if (current === 3) {
+            return true;
+          }
+        }
       });
+    });
   }
+
+  // Создание массивов с индаксами элементов и возвращает тру или фолс если завершена линия
   function isWin() {
     const circle = [];
     const chest = [];
@@ -70,25 +71,17 @@ export const App = () => {
       }
     });
 
-    return checkingForResults(circle) || checkingForResults(chest)
+    return checkingForResults(circle) || checkingForResults(chest);
   }
 
-  console.log(isWin());
-
   return (
-    <>
-      <div className={style.result}>
-        <p>Ваш ход</p>
-        {getTypeField()}
-      </div>
-      <div className={style.app}>
-        <StructuralComponent
-          typeField={typeField}
-          setTypeField={setTypeField}
-          arr={arrClickResult}
-          setArr={setArrClickResult}
-        />
-      </div>
-    </>
+    <AppLayout
+      typeField={typeField}
+      setTypeField={setTypeField}
+      arrClickResult={arrClickResult}
+      setArrClickResult={setArrClickResult}
+      getTypeField={getTypeField}
+      isWin={isWin}
+    />
   );
 };

@@ -1,6 +1,6 @@
 import { ClickInField } from './Stateful/ClickInField';
 
-export const StructuralComponent = ({ typeField, setTypeField, arr, setArr }) => {
+export const StructuralComponent = ({ typeField, setTypeField, arr, setArr, isWin }) => {
   return (
     <>
       <ClickInField
@@ -9,6 +9,7 @@ export const StructuralComponent = ({ typeField, setTypeField, arr, setArr }) =>
         arr={arr}
         setArr={setArr}
         dataIndex={1}
+        isWin={isWin}
       />
       <ClickInField
         typeField={typeField}
@@ -16,6 +17,7 @@ export const StructuralComponent = ({ typeField, setTypeField, arr, setArr }) =>
         arr={arr}
         setArr={setArr}
         dataIndex={2}
+        isWin={isWin}
       />
       <ClickInField
         typeField={typeField}
@@ -23,6 +25,7 @@ export const StructuralComponent = ({ typeField, setTypeField, arr, setArr }) =>
         arr={arr}
         setArr={setArr}
         dataIndex={3}
+        isWin={isWin}
       />
       <ClickInField
         typeField={typeField}
@@ -30,6 +33,7 @@ export const StructuralComponent = ({ typeField, setTypeField, arr, setArr }) =>
         arr={arr}
         setArr={setArr}
         dataIndex={4}
+        isWin={isWin}
       />
       <ClickInField
         typeField={typeField}
@@ -37,6 +41,7 @@ export const StructuralComponent = ({ typeField, setTypeField, arr, setArr }) =>
         arr={arr}
         setArr={setArr}
         dataIndex={5}
+        isWin={isWin}
       />
       <ClickInField
         typeField={typeField}
@@ -44,6 +49,7 @@ export const StructuralComponent = ({ typeField, setTypeField, arr, setArr }) =>
         arr={arr}
         setArr={setArr}
         dataIndex={6}
+        isWin={isWin}
       />
       <ClickInField
         typeField={typeField}
@@ -51,6 +57,7 @@ export const StructuralComponent = ({ typeField, setTypeField, arr, setArr }) =>
         arr={arr}
         setArr={setArr}
         dataIndex={7}
+        isWin={isWin}
       />
       <ClickInField
         typeField={typeField}
@@ -58,6 +65,7 @@ export const StructuralComponent = ({ typeField, setTypeField, arr, setArr }) =>
         arr={arr}
         setArr={setArr}
         dataIndex={8}
+        isWin={isWin}
       />
       <ClickInField
         typeField={typeField}
@@ -65,6 +73,7 @@ export const StructuralComponent = ({ typeField, setTypeField, arr, setArr }) =>
         arr={arr}
         setArr={setArr}
         dataIndex={9}
+        isWin={isWin}
       />
     </>
   );
