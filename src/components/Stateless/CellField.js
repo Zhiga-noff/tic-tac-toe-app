@@ -1,14 +1,18 @@
 import style from '../CellField.module.css';
 import { useState } from 'react';
 
-export const CellField = ({ type, dataIndex, isNoneClick, isClassType }) => {
+export const CellField = ({ type, setType, dataIndex, isNoneClick, isClassType,reset, setReset }) => {
+
   return (
     <div
       data-index={dataIndex}
-      onClick={isNoneClick}
-      className={`${style.cell} field ${isClassType()}`}
+      onClick={()=>{
+          setReset(false)
+          isNoneClick()
+          }}
+      className={`${style.cell} ${reset ? '' : isClassType()}`}
     >
-      {type === 'chest' ? 'X' : type === 'circle' ? 'O' : ''}
+      {type=== ''?'' : type === 'chest' ? 'X' : type === 'circle' ? 'O' : ''}
     </div>
   );
 };

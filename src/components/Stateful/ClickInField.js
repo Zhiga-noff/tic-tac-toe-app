@@ -9,6 +9,8 @@ export const ClickInField = ({
   setArr,
   dataIndex,
   isWin,
+    reset,
+    setReset
 }) => {
   // Первоначальный тип указанный во всех полях
   const [type, setType] = useState('');
@@ -23,13 +25,16 @@ export const ClickInField = ({
     }
   }
 
+  if (reset) {
+      setType('')
+  }
+
   // Функция длля клика
   function isNoneClick() {
       // Если тру тогда нажимать нельзя
     if (flag || isWin()) {
       return;
     }
-
     setFlag(true);
     setType(typeField);
     // Закидываю на нужное место в массив тип элемента
@@ -48,6 +53,8 @@ export const ClickInField = ({
     }
   }
 
+
+
   return (
     <CellField
       type={type}
@@ -56,6 +63,8 @@ export const ClickInField = ({
       isWin={isWin}
       isNoneClick={isNoneClick}
       isClassType={isClassType}
+      reset={reset}
+      setReset={setReset}
     />
   );
 };

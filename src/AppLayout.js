@@ -8,6 +8,7 @@ export const AppLayout = ({
   setArrClickResult,
   getTypeField,
   isWin,
+    reset, setReset
 }) => {
   return (
     <>
@@ -15,7 +16,9 @@ export const AppLayout = ({
         <div className={style.result}>
           {isWin() ? <p>Игра окончена</p> : [<p>Ваш ход</p>, getTypeField()]}
         </div>
-          <div className={style.reset}>Reset</div>
+          <div className={style.reset} onClick={()=>{
+              setReset(!reset)
+          }}>{reset ? 'Play' : 'Reset'}</div>
       </div>
 
       <div className={style.app}>
@@ -25,6 +28,8 @@ export const AppLayout = ({
           arr={arrClickResult}
           setArr={setArrClickResult}
           isWin={isWin}
+          reset={reset}
+          setReset={setReset}
         />
       </div>
     </>

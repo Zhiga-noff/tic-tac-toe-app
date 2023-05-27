@@ -1,6 +1,7 @@
 import { useState } from 'react';
 import style from './App.module.css';
 import { AppLayout } from './AppLayout';
+import { func } from 'prop-types';
 
 export const App = () => {
   // Установка типов круг или крест
@@ -18,6 +19,8 @@ export const App = () => {
     '',
     '',
   ]);
+
+  const [reset, setReset]= useState(false)
 
   // Вывод очередности ввода в зависимости от типа
   function getTypeField() {
@@ -71,8 +74,16 @@ export const App = () => {
       }
     });
 
+    if (!arrClickResult.includes('')) {
+        return true
+    }
+
     return checkingForResults(circle) || checkingForResults(chest);
   }
+
+    console.log(reset);
+
+
 
   return (
     <AppLayout
@@ -82,6 +93,8 @@ export const App = () => {
       setArrClickResult={setArrClickResult}
       getTypeField={getTypeField}
       isWin={isWin}
+      reset={reset}
+      setReset={setReset}
     />
   );
 };
