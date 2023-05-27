@@ -1,8 +1,8 @@
 import { useState } from 'react';
 import style from './App.module.css';
-import { AppLayout } from './App';
+import { AppLayout } from './AppLayout';
 
-const App = () => {
+export const App = () => {
   // Установка типов круг или крест
   const [typeField, setTypeField] = useState('circle');
   // Пустой массив для внесения типов элементов на поле
