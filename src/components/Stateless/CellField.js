@@ -1,7 +1,7 @@
 import style from '../CellField.module.css';
 import { useState } from 'react';
 
-export const CellField = ({ type, setType, dataIndex, isNoneClick, isClassType,reset, setReset }) => {
+export const CellField = ({ type, setType, dataIndex, isNoneClick, isClassType,reset, setReset,isReset }) => {
 
   return (
     <div
@@ -12,7 +12,8 @@ export const CellField = ({ type, setType, dataIndex, isNoneClick, isClassType,r
           }}
       className={`${style.cell} ${reset ? '' : isClassType()}`}
     >
-      {type=== ''?'' : type === 'chest' ? 'X' : type === 'circle' ? 'O' : ''}
+        {isReset()}
+      {type === 'chest' ? 'X' : type === 'circle' ? 'O' : ''}
     </div>
   );
 };

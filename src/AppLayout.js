@@ -18,6 +18,7 @@ export const AppLayout = ({
         </div>
           <div className={style.reset} onClick={()=>{
               setReset(!reset)
+              setArrClickResult(['', '', '', '', '', '', '', '', '', '']);
           }}>{reset ? 'Play' : 'Reset'}</div>
       </div>
 

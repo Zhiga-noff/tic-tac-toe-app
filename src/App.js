@@ -50,7 +50,6 @@ export const App = () => {
         for (let i = 0; i < item.length; i++) {
           if (itemType === item[i]) {
             current += 1;
-            console.log(current);
           }
           if (current === 3) {
             return true;
@@ -81,7 +80,6 @@ export const App = () => {
     return checkingForResults(circle) || checkingForResults(chest);
   }
 
-    console.log(reset);
 
 
 
