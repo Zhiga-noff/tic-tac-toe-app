@@ -1,6 +1,7 @@
 import { useState } from 'react';
 import style from './App.module.css';
 import { StructuralComponent } from './components/StructuralComponent';
+import { func } from 'prop-types';
 
 const nodeCollectionField = document.getElementsByClassName('field');
 console.log(nodeCollectionField);
@@ -8,6 +9,7 @@ console.log(nodeCollectionField);
 export const App = () => {
   const [typeField, setTypeField] = useState('circle');
   const [arrClickResult, setArrClickResult] = useState([
+    '',
     '',
     '',
     '',
@@ -28,6 +30,33 @@ export const App = () => {
 
   console.log(arrClickResult);
 
+  const resultForWin = [
+    [1, 2, 3],
+    [4, 5, 6],
+    [7, 8, 9],
+    [1, 4, 7],
+    [2, 5, 8],
+    [3, 6, 9],
+    [1, 5, 9],
+    [3, 5, 7],
+  ];
+
+  function checkingForResults(type) {
+     return resultForWin.some((item) => {
+          let current = 0;
+          return type.some((itemType) => {
+              for (let i = 0; i < item.length; i++) {
+                  if (itemType === item[i]) {
+                      current += 1;
+                      console.log(current);
+                  }
+                  if (current === 3) {
+                      return true;
+                  }
+              }
+          });
+      });
+  }
   function isWin() {
     const circle = [];
     const chest = [];
@@ -40,6 +69,8 @@ export const App = () => {
         chest.push(index);
       }
     });
+
+    return checkingForResults(circle) || checkingForResults(chest)
   }
 
   console.log(isWin());
