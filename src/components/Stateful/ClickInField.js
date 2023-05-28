@@ -1,6 +1,7 @@
 import { CellField } from '../Stateless/CellField';
 import { useState } from 'react';
 import style from '../CellField.module.css';
+import PropTypes from 'prop-types';
 
 export const ClickInField = ({
   typeField,
@@ -15,7 +16,7 @@ export const ClickInField = ({
   // Первоначальный тип указанный во всех полях
   const [type, setType] = useState('');
 
-  // Флаг на проверку что бы нельзя было нажать дважды на поле
+  // Флаг на проверку, что бы нельзя было нажать дважды на поле
   const [flag, setFlag] = useState(false);
 
   // Установка стиля в зависимости от типа круг или крест
@@ -32,7 +33,7 @@ export const ClickInField = ({
     }
   }
 
-  // Функция длля клика
+  // Функция для клика
   function isNoneClick() {
     // Если тру тогда нажимать нельзя
     if (flag || isWin()) {
@@ -59,7 +60,6 @@ export const ClickInField = ({
   return (
     <CellField
       type={type}
-      setType={setType}
       dataIndex={dataIndex}
       isWin={isWin}
       isNoneClick={isNoneClick}
@@ -70,3 +70,15 @@ export const ClickInField = ({
     />
   );
 };
+
+ClickInField.propTypes = {
+    typeField: PropTypes.string,
+    setTypeField: PropTypes.func,
+    arr: PropTypes.array,
+    setArr: PropTypes.func,
+    dataIndex: PropTypes.number,
+    isWin: PropTypes.func,
+    reset: PropTypes.bool,
+    setReset: PropTypes.func,
+
+}

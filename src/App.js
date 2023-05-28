@@ -25,9 +25,9 @@ export const App = () => {
   // Вывод очередности ввода в зависимости от типа
   function getTypeField() {
     if (typeField === 'circle') {
-      return <p className={style.circle}>O</p>;
+      return <p key={'circle'} className={style.circle}>O</p>;
     }
-    return <p className={style.chest}>X</p>;
+    return <p key={'chest'} className={style.chest}>X</p>;
   }
 
   // Массив из побеждающих результатов

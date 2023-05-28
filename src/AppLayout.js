@@ -1,5 +1,6 @@
 import style from './App.module.css';
 import { StructuralComponent } from './components/StructuralComponent';
+import PropTypes from 'prop-types';
 
 export const AppLayout = ({
   typeField,
@@ -8,18 +9,28 @@ export const AppLayout = ({
   setArrClickResult,
   getTypeField,
   isWin,
-    reset, setReset
+  reset,
+  setReset,
 }) => {
   return (
     <>
       <div className={style.flexo}>
         <div className={style.result}>
-          {isWin() ? <p>Игра окончена</p> : [<p>Ваш ход</p>, getTypeField()]}
+          {isWin() ? (
+            <p key={'endGame'}>Игра окончена</p>
+          ) : (
+            [<p key={'message'}>Ваш ход</p>, getTypeField()]
+          )}
         </div>
-          <div className={style.reset} onClick={()=>{
-              setReset(!reset)
-              setArrClickResult(['', '', '', '', '', '', '', '', '', '']);
-          }}>{reset ? 'Play' : 'Reset'}</div>
+        <div
+          className={style.reset}
+          onClick={() => {
+            setReset(!reset);
+            setArrClickResult(['', '', '', '', '', '', '', '', '', '']);
+          }}
+        >
+          {reset ? 'Play' : 'Reset'}
+        </div>
       </div>
 
       <div className={style.app}>
@@ -35,4 +46,15 @@ export const AppLayout = ({
       </div>
     </>
   );
+};
+
+AppLayout.propTypes = {
+  typeField: PropTypes.string,
+  setTypeField: PropTypes.func,
+  arrClickResult: PropTypes.array,
+  setArrClickResult: PropTypes.func,
+  getTypeField: PropTypes.func,
+  isWin: PropTypes.func,
+  reset: PropTypes.bool,
+  setReset: PropTypes.func,
 };
