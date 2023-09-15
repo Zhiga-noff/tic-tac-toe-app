@@ -2,6 +2,7 @@ import { CellField } from '../Stateless/CellField';
 import { useState } from 'react';
 import style from '../CellField.module.css';
 import PropTypes from 'prop-types';
+import { isWin } from '../../modules/is-win-function';
 
 export const ClickInField = ({
   typeField,
@@ -9,7 +10,6 @@ export const ClickInField = ({
   arr,
   setArr,
   dataIndex,
-  isWin,
   reset,
   setReset,
 }) => {
@@ -36,7 +36,7 @@ export const ClickInField = ({
   // Функция для клика
   function isNoneClick() {
     // Если тру тогда нажимать нельзя
-    if (flag || isWin()) {
+    if (flag || isWin(arr)) {
       return;
     }
     setFlag(true);
@@ -72,13 +72,12 @@ export const ClickInField = ({
 };
 
 ClickInField.propTypes = {
-    typeField: PropTypes.string,
-    setTypeField: PropTypes.func,
-    arr: PropTypes.array,
-    setArr: PropTypes.func,
-    dataIndex: PropTypes.number,
-    isWin: PropTypes.func,
-    reset: PropTypes.bool,
-    setReset: PropTypes.func,
-
-}
+  typeField: PropTypes.string,
+  setTypeField: PropTypes.func,
+  arr: PropTypes.array,
+  setArr: PropTypes.func,
+  dataIndex: PropTypes.number,
+  isWin: PropTypes.func,
+  reset: PropTypes.bool,
+  setReset: PropTypes.func,
+};

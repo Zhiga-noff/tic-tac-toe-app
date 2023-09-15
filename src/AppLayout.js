@@ -1,32 +1,40 @@
 import style from './App.module.css';
 import { StructuralComponent } from './components/StructuralComponent';
 import PropTypes from 'prop-types';
+import { isWin } from './modules/is-win-function';
+import { getTypeField } from './modules/get-type-field';
+import { useState } from 'react';
+import { ticTacToeArray } from './constants/tic-tac-toe-array';
+import { store } from './store';
 
-export const AppLayout = ({
-  typeField,
-  setTypeField,
-  arrClickResult,
-  setArrClickResult,
-  getTypeField,
-  isWin,
-  reset,
-  setReset,
-}) => {
+export const AppLayout = () => {
+  // Установка типов круг или крест
+  const [typeField, setTypeField] = useState('circle');
+
+  // Пустой массив для внесения типов элементов на поле
+  const [arrClickResult, setArrClickResult] = useState(ticTacToeArray);
+
+  // Флаг для сброса полей
+  const [reset, setReset] = useState(false);
+
   return (
     <>
       <div className={style.flexo}>
         <div className={style.result}>
-          {isWin() ? (
+          {isWin(arrClickResult) ? (
             <p key={'endGame'}>Игра окончена</p>
           ) : (
-            [<p key={'message'}>Ваш ход</p>, getTypeField()]
+            [<p key={'message'}>Ваш ход</p>, getTypeField(typeField)]
           )}
         </div>
         <div
           className={style.reset}
           onClick={() => {
-            setReset(!reset);
-            setArrClickResult(['', '', '', '', '', '', '', '', '', '']);
+            store.dispatch({ type: 'RESET_GAME', payload: false });
+            setReset(store.getState());
+
+            store.dispatch({ type: 'RESET_ARRAY', payload: ticTacToeArray });
+            setArrClickResult(['', '', '', '', '', '', '', '', '']);
           }}
         >
           {reset ? 'Play' : 'Reset'}
@@ -39,7 +47,6 @@ export const AppLayout = ({
           setTypeField={setTypeField}
           arr={arrClickResult}
           setArr={setArrClickResult}
-          isWin={isWin}
           reset={reset}
           setReset={setReset}
         />
