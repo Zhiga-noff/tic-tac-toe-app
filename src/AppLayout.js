@@ -41,7 +41,7 @@ export const AppLayout = () => {
           className={style.reset}
           onClick={() => {
             store.dispatch({ type: 'REVERSE_FLAG' });
-            setArrClickResult(ticTacToeArray);
+            store.dispatch({ type: 'RESET_GAME' });
           }}
         >
           {reset ? 'Play' : 'Reset'}

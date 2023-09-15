@@ -31,7 +31,6 @@ const checkingForResults = (type) => {
 export const isWin = (arrClickResult) => {
   const circle = [];
   const chest = [];
-
   arrClickResult.forEach((item, index) => {
     if (item === 'circle') {
       circle.push(index);
