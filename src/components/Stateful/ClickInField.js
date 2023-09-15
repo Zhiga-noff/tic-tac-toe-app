@@ -27,7 +27,6 @@ export const ClickInField = ({ dataIndex }) => {
 
   function isReset() {
     if (reset) {
-      store.dispatch({});
       setType('');
       setFlag(false);
     }
@@ -37,7 +36,6 @@ export const ClickInField = ({ dataIndex }) => {
   function isNoneClick() {
     // Если тру тогда нажимать нельзя
     if (flag || isWin(arrClickResult)) {
-      console.log(isWin(arrClickResult));
       return;
     }
     setFlag(true);

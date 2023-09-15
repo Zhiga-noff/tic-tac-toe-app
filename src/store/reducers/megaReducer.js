@@ -21,6 +21,8 @@ export const megaReducer = (state = initialState, action) => {
         }),
       };
     }
+    case 'RESET_GAME':
+      return { ...state, array: ticTacToeArray };
     case 'NEW_TYPE':
       return { ...state, type: payload };
     case 'REVERSE_FLAG': {
