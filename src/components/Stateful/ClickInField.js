@@ -2,22 +2,21 @@ import { CellField } from '../Stateless/CellField';
 import { useState } from 'react';
 import style from '../CellField.module.css';
 import PropTypes from 'prop-types';
+import { isWin } from '../../modules/is-win-function';
+import { store } from '../../store/store';
 
-export const ClickInField = ({
-  typeField,
-  setTypeField,
-  arr,
-  setArr,
-  dataIndex,
-  isWin,
-  reset,
-  setReset,
-}) => {
+export const ClickInField = ({ dataIndex }) => {
   // Первоначальный тип указанный во всех полях
   const [type, setType] = useState('');
 
   // Флаг на проверку, что бы нельзя было нажать дважды на поле
   const [flag, setFlag] = useState(false);
+
+  const arrClickResult = store.getState().array;
+
+  const reset = store.getState().resetFlag;
+
+  const typeField = store.getState().type;
 
   // Установка стиля в зависимости от типа круг или крест
   function isClassType() {
@@ -36,24 +35,19 @@ export const ClickInField = ({
   // Функция для клика
   function isNoneClick() {
     // Если тру тогда нажимать нельзя
-    if (flag || isWin()) {
+    if (flag || isWin(arrClickResult)) {
       return;
     }
     setFlag(true);
     setType(typeField);
-    // Закидываю на нужное место в массив тип элемента
-    setArr(
-      arr.map((item, index) => {
-        if (index === dataIndex) {
-          return typeField;
-        }
-        return item;
-      }),
-    );
+    store.dispatch({
+      type: 'CLICK_TO_FIELD',
+      payload: { index: dataIndex, type: typeField },
+    });
     if (typeField === 'circle') {
-      setTypeField('chest');
+      store.dispatch({ type: 'NEW_TYPE', payload: 'chest' });
     } else {
-      setTypeField('circle');
+      store.dispatch({ type: 'NEW_TYPE', payload: 'circle' });
     }
   }
 
@@ -61,24 +55,17 @@ export const ClickInField = ({
     <CellField
       type={type}
       dataIndex={dataIndex}
-      isWin={isWin}
       isNoneClick={isNoneClick}
       isClassType={isClassType}
-      reset={reset}
-      setReset={setReset}
       isReset={isReset}
     />
   );
 };
 
 ClickInField.propTypes = {
-    typeField: PropTypes.string,
-    setTypeField: PropTypes.func,
-    arr: PropTypes.array,
-    setArr: PropTypes.func,
-    dataIndex: PropTypes.number,
-    isWin: PropTypes.func,
-    reset: PropTypes.bool,
-    setReset: PropTypes.func,
-
-}
+  typeField: PropTypes.string,
+  setTypeField: PropTypes.func,
+  arr: PropTypes.array,
+  setArr: PropTypes.func,
+  dataIndex: PropTypes.number,
+};
