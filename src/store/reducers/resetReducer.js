@@ -1,7 +1,7 @@
 export const initialState = { resetFlag: false };
 
 export const resetReducer = (state = initialState, action) => {
-  const { type, payload } = action;
+  const { type } = action;
 
   switch (type) {
     case 'REVERSE_FLAG': {
@@ -10,7 +10,7 @@ export const resetReducer = (state = initialState, action) => {
       };
     }
     case 'FALSE_FLAG': {
-      return { resetFlag: false };
+      return { ...state, resetFlag: false };
     }
     default:
       return state;

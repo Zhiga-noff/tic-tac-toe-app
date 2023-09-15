@@ -4,17 +4,16 @@ import { store } from '../../store/store';
 
 export const CellField = ({ type, dataIndex, isNoneClick, isClassType, isReset }) => {
   isReset();
-  const { resetFlag } = store.getState();
+  const { reset } = store.getState().resetFlag;
 
   return (
     <div
       data-index={dataIndex}
       onClick={() => {
-        // setReset(false);
         store.dispatch({ type: 'FALSE_FLAG' });
         isNoneClick();
       }}
-      className={`${style.cell} ${resetFlag ? '' : isClassType()}`}
+      className={`${style.cell} ${reset ? '' : isClassType()}`}
     >
       {type === 'chest' ? 'X' : type === 'circle' ? 'O' : ''}
     </div>

@@ -1,19 +1,15 @@
 import { ClickInField } from './Stateful/ClickInField';
 import PropTypes from 'prop-types';
 import { store } from '../store/store';
+import { useState } from 'react';
 
-export const StructuralComponent = ({ typeField, setTypeField, arr, setArr }) => {
+export const StructuralComponent = () => {
+  const arrClickResult = store.getState().array;
+
   return (
     <>
-      {arr.map((item, index) => (
-        <ClickInField
-          key={index}
-          typeField={typeField}
-          setTypeField={setTypeField}
-          arr={arr}
-          setArr={setArr}
-          dataIndex={index}
-        />
+      {arrClickResult.map((item, index) => (
+        <ClickInField key={index} dataIndex={index} />
       ))}
     </>
   );
@@ -22,7 +18,5 @@ export const StructuralComponent = ({ typeField, setTypeField, arr, setArr }) =>
 StructuralComponent.propTypes = {
   typeField: PropTypes.string,
   setTypeField: PropTypes.func,
-  arr: PropTypes.array,
-  setArr: PropTypes.func,
   isWin: PropTypes.func,
 };

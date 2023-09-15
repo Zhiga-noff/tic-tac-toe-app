@@ -9,18 +9,19 @@ import { store } from './store/store';
 
 export const AppLayout = () => {
   // Установка типов круг или крест
-  const [typeField, setTypeField] = useState('circle');
+  const [typeField, setTypeField] = useState(store.getState().type);
 
   // Пустой массив для внесения типов элементов на поле
-  const [arrClickResult, setArrClickResult] = useState(ticTacToeArray);
-  // Флаг для сброса полей
+  const [arrClickResult, setArrClickResult] = useState(store.getState().array);
 
+  // Флаг для сброса полей
   const [reset, setReset] = useState(store.getState().resetFlag);
-  const { resetFlag } = reset;
 
   useEffect(() => {
     const subscribe = store.subscribe(() => {
-      setReset(store.getState());
+      setReset(store.getState().resetFlag);
+      setArrClickResult(store.getState().array);
+      setTypeField(store.getState().type);
     });
 
     return () => subscribe;
@@ -43,17 +44,12 @@ export const AppLayout = () => {
             setArrClickResult(ticTacToeArray);
           }}
         >
-          {resetFlag ? 'Play' : 'Reset'}
+          {reset ? 'Play' : 'Reset'}
         </div>
       </div>
 
       <div className={style.app}>
-        <StructuralComponent
-          typeField={typeField}
-          setTypeField={setTypeField}
-          arr={arrClickResult}
-          setArr={setArrClickResult}
-        />
+        <StructuralComponent />
       </div>
     </>
   );
