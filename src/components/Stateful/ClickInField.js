@@ -3,21 +3,16 @@ import { useState } from 'react';
 import style from '../CellField.module.css';
 import PropTypes from 'prop-types';
 import { isWin } from '../../modules/is-win-function';
+import { store } from '../../store/store';
 
-export const ClickInField = ({
-  typeField,
-  setTypeField,
-  arr,
-  setArr,
-  dataIndex,
-  reset,
-  setReset,
-}) => {
+export const ClickInField = ({ typeField, setTypeField, arr, setArr, dataIndex }) => {
   // Первоначальный тип указанный во всех полях
   const [type, setType] = useState('');
 
   // Флаг на проверку, что бы нельзя было нажать дважды на поле
   const [flag, setFlag] = useState(false);
+
+  const { resetFlag } = store.getState();
 
   // Установка стиля в зависимости от типа круг или крест
   function isClassType() {
@@ -27,7 +22,7 @@ export const ClickInField = ({
   }
 
   function isReset() {
-    if (reset) {
+    if (resetFlag) {
       setType('');
       setFlag(false);
     }
@@ -64,8 +59,6 @@ export const ClickInField = ({
       isWin={isWin}
       isNoneClick={isNoneClick}
       isClassType={isClassType}
-      reset={reset}
-      setReset={setReset}
       isReset={isReset}
     />
   );
@@ -78,6 +71,4 @@ ClickInField.propTypes = {
   setArr: PropTypes.func,
   dataIndex: PropTypes.number,
   isWin: PropTypes.func,
-  reset: PropTypes.bool,
-  setReset: PropTypes.func,
 };

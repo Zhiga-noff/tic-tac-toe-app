@@ -1,25 +1,20 @@
 import style from '../CellField.module.css';
-import PropTypes from 'prop-types'
+import PropTypes from 'prop-types';
+import { store } from '../../store/store';
 
-export const CellField = ({
-  type,
-  dataIndex,
-  isNoneClick,
-  isClassType,
-  reset,
-  setReset,
-  isReset,
-}) => {
-    isReset()
+export const CellField = ({ type, dataIndex, isNoneClick, isClassType, isReset }) => {
+  isReset();
+  const { resetFlag } = store.getState();
 
   return (
     <div
       data-index={dataIndex}
       onClick={() => {
-        setReset(false);
+        // setReset(false);
+        store.dispatch({ type: 'FALSE_FLAG' });
         isNoneClick();
       }}
-      className={`${style.cell} ${reset ? '' : isClassType()}`}
+      className={`${style.cell} ${resetFlag ? '' : isClassType()}`}
     >
       {type === 'chest' ? 'X' : type === 'circle' ? 'O' : ''}
     </div>
@@ -27,11 +22,9 @@ export const CellField = ({
 };
 
 CellField.propTypes = {
-    type: PropTypes.string,
-    dataIndex: PropTypes.number,
-    isNoneClick: PropTypes.func,
-    isClassType: PropTypes.func,
-    reset: PropTypes.bool,
-    setReset: PropTypes.func,
-    isReset: PropTypes.func,
-}
+  type: PropTypes.string,
+  dataIndex: PropTypes.number,
+  isNoneClick: PropTypes.func,
+  isClassType: PropTypes.func,
+  isReset: PropTypes.func,
+};

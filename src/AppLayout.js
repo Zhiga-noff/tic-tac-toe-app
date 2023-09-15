@@ -3,9 +3,9 @@ import { StructuralComponent } from './components/StructuralComponent';
 import PropTypes from 'prop-types';
 import { isWin } from './modules/is-win-function';
 import { getTypeField } from './modules/get-type-field';
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 import { ticTacToeArray } from './constants/tic-tac-toe-array';
-import { store } from './store';
+import { store } from './store/store';
 
 export const AppLayout = () => {
   // Установка типов круг или крест
@@ -13,9 +13,18 @@ export const AppLayout = () => {
 
   // Пустой массив для внесения типов элементов на поле
   const [arrClickResult, setArrClickResult] = useState(ticTacToeArray);
-
   // Флаг для сброса полей
-  const [reset, setReset] = useState(false);
+
+  const [reset, setReset] = useState(store.getState().resetFlag);
+  const { resetFlag } = reset;
+
+  useEffect(() => {
+    const subscribe = store.subscribe(() => {
+      setReset(store.getState());
+    });
+
+    return () => subscribe;
+  }, []);
 
   return (
     <>
@@ -30,14 +39,11 @@ export const AppLayout = () => {
         <div
           className={style.reset}
           onClick={() => {
-            store.dispatch({ type: 'RESET_GAME', payload: false });
-            setReset(store.getState());
-
-            store.dispatch({ type: 'RESET_ARRAY', payload: ticTacToeArray });
-            setArrClickResult(['', '', '', '', '', '', '', '', '']);
+            store.dispatch({ type: 'REVERSE_FLAG' });
+            setArrClickResult(ticTacToeArray);
           }}
         >
-          {reset ? 'Play' : 'Reset'}
+          {resetFlag ? 'Play' : 'Reset'}
         </div>
       </div>
 
@@ -47,8 +53,6 @@ export const AppLayout = () => {
           setTypeField={setTypeField}
           arr={arrClickResult}
           setArr={setArrClickResult}
-          reset={reset}
-          setReset={setReset}
         />
       </div>
     </>
@@ -62,6 +66,4 @@ AppLayout.propTypes = {
   setArrClickResult: PropTypes.func,
   getTypeField: PropTypes.func,
   isWin: PropTypes.func,
-  reset: PropTypes.bool,
-  setReset: PropTypes.func,
 };

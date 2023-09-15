@@ -1,15 +1,8 @@
 import { ClickInField } from './Stateful/ClickInField';
 import PropTypes from 'prop-types';
-import { store } from '../store';
+import { store } from '../store/store';
 
-export const StructuralComponent = ({
-  typeField,
-  setTypeField,
-  arr,
-  setArr,
-  reset,
-  setReset,
-}) => {
+export const StructuralComponent = ({ typeField, setTypeField, arr, setArr }) => {
   return (
     <>
       {arr.map((item, index) => (
@@ -20,8 +13,6 @@ export const StructuralComponent = ({
           arr={arr}
           setArr={setArr}
           dataIndex={index}
-          reset={reset}
-          setReset={setReset}
         />
       ))}
     </>
@@ -34,6 +25,4 @@ StructuralComponent.propTypes = {
   arr: PropTypes.array,
   setArr: PropTypes.func,
   isWin: PropTypes.func,
-  reset: PropTypes.bool,
-  setReset: PropTypes.func,
 };
