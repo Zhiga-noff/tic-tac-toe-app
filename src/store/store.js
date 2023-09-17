@@ -1,6 +1,10 @@
-import { legacy_createStore as createStore } from 'redux';
-import { resetReducer } from './reducers/resetReducer';
-import { arrayReducer } from './reducers/arrayReducer';
-import { megaReducer } from './reducers/megaReducer';
+import { combineReducers, legacy_createStore as createStore } from 'redux';
+import { arrayReducer, resetReducer, typeReducer } from './reducers';
 
-export const store = createStore(megaReducer);
+const rootReducer = combineReducers({
+  resetState: resetReducer,
+  arrayState: arrayReducer,
+  typeState: typeReducer,
+});
+
+export const store = createStore(rootReducer);

@@ -14,9 +14,8 @@ export const arrayReducer = (state = initialState, action) => {
         return item;
       });
     }
-    case 'FALSE_FLAG': {
-      return { resetFlag: false };
-    }
+    case 'RESET_GAME':
+      return ticTacToeArray;
     default:
       return state;
   }

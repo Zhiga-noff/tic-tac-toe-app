@@ -1,16 +1,20 @@
 import style from '../CellField.module.css';
 import PropTypes from 'prop-types';
 import { store } from '../../store/store';
+import { FALSE_FLAG } from '../../store/actions';
+import { useDispatch, useSelector } from 'react-redux';
+import { selectReset } from '../../store/selectors';
 
 export const CellField = ({ type, dataIndex, isNoneClick, isClassType, isReset }) => {
   isReset();
-  const { reset } = store.getState().resetFlag;
+  const reset = useSelector(selectReset);
+  const dispatch = useDispatch();
 
   return (
     <div
       data-index={dataIndex}
       onClick={() => {
-        store.dispatch({ type: 'FALSE_FLAG' });
+        dispatch(FALSE_FLAG);
         isNoneClick();
       }}
       className={`${style.cell} ${reset ? '' : isClassType()}`}

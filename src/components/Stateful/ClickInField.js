@@ -2,8 +2,10 @@ import { CellField } from '../Stateless/CellField';
 import { useState } from 'react';
 import style from '../CellField.module.css';
 import PropTypes from 'prop-types';
-import { isWin } from '../../modules/is-win-function';
-import { store } from '../../store/store';
+import { isWin } from '../../modules';
+import { useDispatch, useSelector } from 'react-redux';
+import { selectArray, selectReset, selectType } from '../../store/selectors';
+import { clickToFieldAction, newTypeAction } from '../../store/actions';
 
 export const ClickInField = ({ dataIndex }) => {
   // Первоначальный тип указанный во всех полях
@@ -12,11 +14,11 @@ export const ClickInField = ({ dataIndex }) => {
   // Флаг на проверку, что бы нельзя было нажать дважды на поле
   const [flag, setFlag] = useState(false);
 
-  const arrClickResult = store.getState().array;
+  const arrClickResult = useSelector(selectArray);
+  const reset = useSelector(selectReset);
+  const typeField = useSelector(selectType);
 
-  const reset = store.getState().resetFlag;
-
-  const typeField = store.getState().type;
+  const dispatch = useDispatch();
 
   // Установка стиля в зависимости от типа круг или крест
   function isClassType() {
@@ -40,14 +42,11 @@ export const ClickInField = ({ dataIndex }) => {
     }
     setFlag(true);
     setType(typeField);
-    store.dispatch({
-      type: 'CLICK_TO_FIELD',
-      payload: { index: dataIndex, type: typeField },
-    });
+    dispatch(clickToFieldAction(dataIndex, typeField));
     if (typeField === 'circle') {
-      store.dispatch({ type: 'NEW_TYPE', payload: 'chest' });
+      dispatch(newTypeAction('chest'));
     } else {
-      store.dispatch({ type: 'NEW_TYPE', payload: 'circle' });
+      dispatch(newTypeAction('circle'));
     }
   }
 
