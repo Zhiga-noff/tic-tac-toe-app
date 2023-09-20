@@ -1,9 +1,7 @@
 import style from './App.module.css';
 import {  StructuralComponentClass } from './components/StructuralComponent';
 import { isWin, getTypeField } from './modules';
-import { store } from './store/store';
-import { connect, useDispatch, useSelector } from 'react-redux';
-import { selectType, selectArray, selectReset } from './store/selectors';
+import { connect } from 'react-redux';
 import { REVERSE_FLAG, RESET_GAME } from './store/actions';
 import { Component } from 'react';
 

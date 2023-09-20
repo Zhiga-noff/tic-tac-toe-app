@@ -1,7 +1,5 @@
 import {  ClickInFieldClass } from './Stateful/ClickInField';
-import PropTypes from 'prop-types';
-import { connect, useSelector } from 'react-redux';
-import { selectArray } from '../store/selectors';
+import { connect } from 'react-redux';
 import { Component } from 'react';
 
 

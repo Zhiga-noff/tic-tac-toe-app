@@ -1,12 +1,9 @@
-import { CellField } from '../Stateless/CellField';
-import { Component, useState } from 'react';
+import { Component } from 'react';
 import style from '../CellField.module.css';
-import PropTypes from 'prop-types';
 import { isWin } from '../../modules';
-import { connect, useDispatch, useSelector } from 'react-redux';
-import { selectArray, selectReset, selectType } from '../../store/selectors';
+import { connect } from 'react-redux';
 import { clickToFieldAction, newTypeAction } from '../../store/actions';
-import { AppClassContainer } from '../../App';
+import { CellFieldClass } from '../Stateless/CellField';
 
 export class ClickInFieldClassContainer extends Component {
   constructor(props) {
@@ -52,7 +49,7 @@ export class ClickInFieldClassContainer extends Component {
 
   render() {
     return (
-      <CellField
+      <CellFieldClass
         type={this.state.type}
         dataIndex={this.props.dataIndex}
         isNoneClick={this.isNoneClick}
