@@ -1,29 +1,29 @@
-import {  ClickInFieldClass } from './Stateful/ClickInField';
+import { ClickInFieldClass } from './Stateful/ClickInField';
 import { connect } from 'react-redux';
 import { Component } from 'react';
 
-
 export class StructuralComponentClassContainer extends Component {
-    constructor(props) {
-        super(props);
-    }
+  constructor(props) {
+    super(props);
+  }
 
-    render() {
-        return (
-            <>
-                {this.props.arrClickResult.map((item, index) => {
-                    console.log(this.props.arrClickResult);
-                    return <ClickInFieldClass key={index} dataIndex={index} />}
-                )}
-            </>
-        );
-    }
+  render() {
+    return (
+      <>
+        {this.props.arrClickResult.map((item, index) => {
+          return <ClickInFieldClass key={index} dataIndex={index} />;
+        })}
+      </>
+    );
+  }
 }
 
 const mapStateToProps = (state) => {
-    return {
-        arrClickResult: state.arrayState,
-    };
+  return {
+    arrClickResult: state.arrayState,
+  };
 };
 
-export const StructuralComponentClass = connect(mapStateToProps)(StructuralComponentClassContainer)
+export const StructuralComponentClass = connect(mapStateToProps)(
+  StructuralComponentClassContainer,
+);

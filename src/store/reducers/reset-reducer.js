@@ -5,6 +5,7 @@ export const resetReducer = (state = initialState, action) => {
 
   switch (type) {
     case 'REVERSE_FLAG': {
+      console.log(state);
       return !state;
     }
     case 'FALSE_FLAG': {

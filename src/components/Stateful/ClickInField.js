@@ -21,13 +21,13 @@ export class ClickInFieldClassContainer extends Component {
     }
   };
 
-  isReset=()=>  {
+  isReset = () => {
     if (this.props.reset) {
-        console.log(this.props.reset);
+      console.log(this.props.reset);
       this.setState({
-          flag:false,
-          type: ''
-      })
+        flag: false,
+        type: '',
+      });
     }
   };
 
@@ -37,9 +37,9 @@ export class ClickInFieldClassContainer extends Component {
     }
 
     this.setState({
-        flag: true,
-        type: this.props.typeField
-    })
+      flag: true,
+      type: this.props.typeField,
+    });
     this.props.dispatch(clickToFieldAction(this.props.dataIndex, this.props.typeField));
     if (this.props.typeField === 'circle') {
       this.props.dispatch(newTypeAction('chest'));
