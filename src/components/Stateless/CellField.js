@@ -2,8 +2,9 @@ import style from '../CellField.module.css';
 import PropTypes from 'prop-types';
 import { store } from '../../store/store';
 import { FALSE_FLAG } from '../../store/actions';
-import { useDispatch, useSelector } from 'react-redux';
+import { connect, useDispatch, useSelector } from 'react-redux';
 import { selectReset } from '../../store/selectors';
+import { Component } from 'react';
 
 export const CellField = ({ type, dataIndex, isNoneClick, isClassType, isReset }) => {
   isReset();
@@ -24,10 +25,20 @@ export const CellField = ({ type, dataIndex, isNoneClick, isClassType, isReset }
   );
 };
 
-CellField.propTypes = {
-  type: PropTypes.string,
-  dataIndex: PropTypes.number,
-  isNoneClick: PropTypes.func,
-  isClassType: PropTypes.func,
-  isReset: PropTypes.func,
-};
+export class CellFieldClassContainer extends Component {
+    constructor(props) {
+        super(props);
+
+    }
+
+    render() {
+        return (
+            <div>
+
+            </div>
+        );
+    }
+
+}
+
+const CellFieldClass = connect()()

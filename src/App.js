@@ -52,12 +52,5 @@ const mapStateToProps = (state) => {
     };
 };
 
-const mapDispatchToProps = (dispatch) => {
-    return {
-        onAgeIncrease: () => dispatch(),
-        onAgeReset: () => dispatch(),
-    };
-};
-
 export const AppClass=connect(mapStateToProps)(AppClassContainer)
 
