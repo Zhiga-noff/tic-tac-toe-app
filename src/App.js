@@ -30,8 +30,8 @@ export const App = () => {
         <div
           className={style.reset}
           onClick={() => {
-            store.dispatch(REVERSE_FLAG);
-            store.dispatch(RESET_GAME);
+            dispatch(REVERSE_FLAG);
+            dispatch(RESET_GAME);
           }}
         >
           {reset ? 'Play' : 'Reset'}
