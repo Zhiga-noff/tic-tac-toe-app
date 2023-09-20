@@ -21,8 +21,9 @@ export class ClickInFieldClassContainer extends Component {
     }
   };
 
-  isReset = () => {
+  isReset()  {
     if (this.props.reset) {
+        console.log(this.props.reset);
       this.setState({
           flag:false,
           type: ''
