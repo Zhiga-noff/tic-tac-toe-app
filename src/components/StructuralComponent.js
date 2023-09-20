@@ -11,9 +11,10 @@ export class StructuralComponentClassContainer extends Component {
     render() {
         return (
             <>
-                {this.props.arrClickResult.map((item, index) => (
-                    <ClickInFieldClass key={index} dataIndex={index} />
-                ))}
+                {this.props.arrClickResult.map((item, index) => {
+                    console.log(this.props.arrClickResult);
+                    return <ClickInFieldClass key={index} dataIndex={index} />}
+                )}
             </>
         );
     }

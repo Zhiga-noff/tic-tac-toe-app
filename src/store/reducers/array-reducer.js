@@ -15,6 +15,7 @@ export const arrayReducer = (state = initialState, action) => {
       });
     }
     case 'RESET_GAME':
+        console.log(111);
       return ticTacToeArray;
     default:
       return state;
