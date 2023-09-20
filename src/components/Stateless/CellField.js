@@ -6,23 +6,32 @@ import { Component } from 'react';
 export class CellFieldClassContainer extends Component {
     constructor(props) {
         super(props);
-
+// props.isReset()
     }
 
+    componentDidMount(){
+        this.props.isReset()
+    }
     render() {
         return (
-            <div
-                data-index={this.props.dataIndex}
-                onClick={() => {
-                    this.props.dispatch(FALSE_FLAG);
-                    this.props.isNoneClick();
-                }}
-                className={`${style.cell} ${this.props.reset ? '' : this.props.isClassType()}`}
-            >
-                {this.props.type === 'chest' ? 'X' : this.props.type === 'circle' ? 'O' : ''}
-            </div>
-        );
+            <>
+                <div
+                    data-index={this.props.dataIndex}
+                    onClick={() => {
+                        this.props.dispatch(FALSE_FLAG);
+                        this.props.isNoneClick();
+                    }}
+                    className={`${style.cell} ${this.props.reset ? '' : this.props.isClassType()}`}
+                >
+                    {this.props.type === 'chest' ? 'X' : this.props.type === 'circle' ? 'O' : ''}
+                </div>
+            </>
+
+
+    );
     }
+
+
 
 }
 
